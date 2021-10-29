@@ -1,0 +1,11 @@
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+fieldset legend{
+    font-size: 20px;
+}
+fieldset .row{
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f7f7f7;
+}
