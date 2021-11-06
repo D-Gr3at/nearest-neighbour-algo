@@ -90,8 +90,3 @@ include 'assets/include/js.php';
 
 
 <?php
-/**
- * @project - ${PROJECT}
- * @author - Bille Ibinabo <billeibinabo@gmail.com>
- * @date - ${date}
- **/
