@@ -24,7 +24,7 @@ $sum_of_row_minimum = 0;
 $sum_of_column_minimum = 0;
 
 try {
-    for ($i = count($streetNames) - 1; $i >= 0; $i--) {
+    for ($i = 0; $i < count($streetNames); $i++) {
         $address = str_replace(',', '', $streetNames[$i]) . ' ' . $lgas[$i] . ' ' . $states[$i];
         $result = $geocoder->geocode($address, ['language' => 'en', 'countrycode' => 'ng']);
         if ($result['status']['code'] != 200){

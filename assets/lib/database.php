@@ -1,15 +1,27 @@
 <?php
 
+namespace Database;
+
+require_once 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
+use mysqli;
+
+$dotEnv = Dotenv::create('.');
+
+$dotEnv->load();
+
+$dotEnv->required(['DB_NAME', 'DB_USER'])->notEmpty();
+
 class Database{
 
-    private $username;
-    private $password;
-    private $hostName;
-    private $databaseName;
-
-    public function getConnectionInstance(){
-        return new mysqli($this->hostName, $this->username, $this->password, $this->databaseName);
+    public static function getConnectionInstance(): mysqli
+    {
+        $hostName = getenv('DB_HOST');
+        $databaseName = getenv('DB_NAME');
+        $username = getenv('DB_USER');
+        $password = getenv('DB_PASSWORD');
+        return new mysqli($hostName, $username, $password, $databaseName);
     }
-
 
 }
