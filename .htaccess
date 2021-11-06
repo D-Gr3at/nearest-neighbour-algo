@@ -12,6 +12,6 @@ RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
 
 RewriteRule ^store/([0-9a-zA-Z]+.*)/ store/store.php
 RewriteRule ^index/ index.php
-RewriteRule ^map/ map.php
-RewriteRule ^error/ error.php
+RewriteRule ^login/ login.php
+RewriteRule ^sign-up/ register.php
 RewriteRule ^menu/ menu.php
