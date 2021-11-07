@@ -27,16 +27,16 @@ try {
     for ($i = 0; $i < count($streetNames); $i++) {
         $address = str_replace(',', '', $streetNames[$i]) . ' ' . $lgas[$i] . ' ' . $states[$i];
         $result = $geocoder->geocode($address, ['language' => 'en', 'countrycode' => 'ng']);
-        if ($result['status']['code'] != 200){
+        if ($result['status']['code'] != 200) {
             ?>
             <script>
-                if (window.confirm("You are not connected to the internet or your connection is weak. Please refresh...")){
+                if (window.confirm("You are not connected to the internet or your connection is weak. Please refresh...")) {
                     location.reload();
-                }else {
+                } else {
                     window.location.href = 'nna/';
                 }
             </script>
-<?php
+            <?php
         }
         $locations[$address] = $result['results'][0]['geometry'];
         array_push($addresses, trim($address));
@@ -277,6 +277,18 @@ include_once('assets/include/header.php');
 
 <div class="container">
     <main class="row min-vh-75 justify-content-center my-5">
+        <?php
+        $str = '';
+        for ($i = 0; $i < count($best_path); $i++) {
+            $str .= $best_path[$i];
+            if (($i + 1) < count($best_path)) {
+                $str .= ' ==> ';
+            }
+        }
+
+        ?>
+        <h2>Best Route</h2>
+        <span class="font-weight-bold mb-5"><?php echo $str; ?></span>
         <div id="map" style="height: 100vh; width: 100%;"></div>
     </main>
 </div>
@@ -297,13 +309,15 @@ include 'assets/include/js.php';
         zoom: 6,
     };
 
-    function sortLocations(obj){
+    function sortLocations(obj) {
         let arr = [];
         for (let i = 0; i < bestPath.length; i++) {
             let addr = bestPath[i];
             let v = Object.keys(obj)
-                    .filter(key => key === addr)
-            .map(value =>{ return locations[value]});
+                .filter(key => key === addr)
+                .map(value => {
+                    return locations[value]
+                });
             arr.push(v[0]);
         }
         return arr;
